@@ -17,13 +17,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist daxslab/daxslab/yii2-staticpages-module "*"
+php composer.phar require --prefer-dist daxslab/yii2-staticpages-module "*"
 ```
 
 or add
 
 ```
-"daxslab/daxslab/yii2-staticpages-module": "*"
+"daxslab/yii2-staticpages-module": "*"
 ```
 
 to the require section of your `composer.json` file.
