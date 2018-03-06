@@ -1,0 +1,25 @@
+{
+    "name": "daxslab/yii2-staticpages-module",
+    "description": "Module to manage static pages in a Yii2 application",
+    "type": "yii2-extension",
+    "keywords": ["yii2","cms","static page"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriel A. López López",
+            "email": "glpz@daxslab.com"
+        },
+        {
+            "name": "Carlos Cesar Caballero Díaz",
+            "email": "ccesar@daxslab.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "daxslab\\staticpages\\": ""
+        }
+    }
+}
