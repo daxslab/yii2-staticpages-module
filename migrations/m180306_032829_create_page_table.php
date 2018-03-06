@@ -1,5 +1,7 @@
 <?php
 
+namespace daxslab\staticpages\migrations;
+
 use yii\db\Migration;
 
 /**
