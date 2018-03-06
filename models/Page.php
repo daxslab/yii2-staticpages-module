@@ -2,7 +2,6 @@
 
 namespace daxslab\staticpages\models;
 
-use daxslab\staticpages\Module;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -101,6 +100,11 @@ class Page extends \yii\db\ActiveRecord
     public function getPages()
     {
         return $this->hasMany(Page::className(), ['parent_id' => 'id']);
+    }
+
+    public function getFullSlug(){
+        $parentFullSlug = $this->parent ? "{$this->parent->fullSlug}/" : '';
+        return $parentFullSlug . $this->slug;
     }
 
     /**

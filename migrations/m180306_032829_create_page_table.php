@@ -19,7 +19,7 @@ class m180306_032829_create_page_table extends Migration
             'id' => $this->primaryKey(),
             'language' => $this->string()->notNull(),
             'title' => $this->string()->notNull(),
-            'slug' => $this->string()->notNull(),
+            'slug' => $this->string()->unique()->notNull(),
             'abstract' => $this->text()->null(),
             'body' => $this->text()->notNull(),
             'image' => $this->string()->null(),
