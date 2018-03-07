@@ -59,7 +59,17 @@ class PageController extends Controller
     public function actionView($slug)
     {
 
-        $model = $this->findModel($slug);
+        $slug_parts = explode('/', $slug);
+
+        $slugToSearch = array_reverse($slug_parts)[0];
+
+        $model = $this->findModel($slugToSearch);
+
+        if ($model->fullSlug != $slug)
+        {
+            throw new NotFoundHttpException(Yii::t('staticpages', 'The requested page does not exist.'));
+        }
+
 
         return $this->render('view', [
             'model' => $model,
