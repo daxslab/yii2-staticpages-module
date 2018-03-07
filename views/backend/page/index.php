@@ -12,6 +12,9 @@ use yii\widgets\Pjax;
 $tag = 'h2';
 $title = Yii::t('app', 'Sub pages');
 
+$module = $this->context->module;
+$availableLanguages = array_combine($module->languages, $module->languages);
+
 if (!isset($parent_id)) {
     $this->title = Yii::t('staticpages', 'Pages');
     $this->params['breadcrumbs'][] = $this->title;
@@ -40,6 +43,10 @@ if (!isset($parent_id)) {
             ],
             [
                 'attribute' => 'language',
+                'filter' => $availableLanguages,
+                'options' => [
+                    'width' => '10%',
+                ],
                 'visible' => !isset($parent_id),
             ],
             [
