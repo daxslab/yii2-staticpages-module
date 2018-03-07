@@ -49,7 +49,6 @@ if (!isset($parent_id)) {
                     return Html::a(Html::encode($model->title), ['update', 'id' => $model->id], ['data-pjax' => 0]);
                 }
             ],
-            'slug',
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => Html::a(Html::tag('i', null, ['class' => 'fa fa-plus']),

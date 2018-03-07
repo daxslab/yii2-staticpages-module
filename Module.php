@@ -10,6 +10,7 @@ use yii2mod\markdown\MarkdownEditor;
  */
 class Module extends \yii\base\Module
 {
+
     /**
      * @inheritdoc
      */
@@ -22,6 +23,8 @@ class Module extends \yii\base\Module
     public $languages = [
         'en-US',
     ];
+
+    public $formatter = null;
 
     protected $_isBackend;
 
@@ -38,6 +41,12 @@ class Module extends \yii\base\Module
             if ($this->viewPath == Yii::getAlias('@daxslab/staticpages/views')) {
                 $this->setViewPath('@daxslab/staticpages/views/frontend');
             }
+        }
+
+        if(!$this->formatter){
+            $this->formatter = function($text){
+                return $text;
+            };
         }
 
         $app = Yii::$app;

@@ -23,10 +23,4 @@ $this->params['breadcrumbs'] = Utils::breadcrumbsForPage($model);
         'model' => $model,
     ]) ?>
 
-    <div class="row">
-        <div class="col-md-8">
-            <?= Yii::$app->runAction('staticpages/page/index', ['parent_id' => $model->id]) ?>
-        </div>
-    </div>
-
 </div>

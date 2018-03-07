@@ -1,21 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: glpz
- * Date: 5/03/18
- * Time: 23:19
- */
 
 use yii\helpers\Html;
-use yii\helpers\Markdown;
 
 ?>
 
 <article>
     <header>
-        <h1><?= Html::encode($model->title)?></h1>
+        <h1><?= Html::encode($model->title) ?></h1>
     </header>
 
-    <?= Markdown::process($model->body) ?>
+    <?= call_user_func($this->context->module->formatter, $model->body) ?>
+
+    <?php if ($model->getPages()->exists()): ?>
+
+        <h2><?= Yii::t('staticpages', 'Sub pages') ?></h2>
+        <ul>
+            <?php foreach ($model->pages as $page): ?>
+                <li><?= Html::a($page->title, $page->url)?></li>
+            <?php endforeach; ?>
+        </ul>
+
+    <?php endif; ?>
 
 </article>

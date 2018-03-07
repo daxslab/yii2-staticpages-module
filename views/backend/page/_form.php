@@ -24,7 +24,7 @@ $availableLanguages = $module->languages;
         <div class="col-md-8">
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'slug')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
             <?= $form->field($model, 'abstract')->textarea(['rows' => 3]) ?>
 
@@ -43,6 +43,9 @@ $availableLanguages = $module->languages;
             <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
+            <?= Yii::$app->runAction('staticpages/page/index', ['parent_id' => $model->id]) ?>
+
         </div>
     </div>
 

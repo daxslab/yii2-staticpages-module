@@ -5,6 +5,7 @@ namespace daxslab\staticpages\models;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "page".
@@ -105,6 +106,10 @@ class Page extends \yii\db\ActiveRecord
     public function getFullSlug(){
         $parentFullSlug = $this->parent ? "{$this->parent->fullSlug}/" : '';
         return $parentFullSlug . $this->slug;
+    }
+
+    public function getUrl($schema = false){
+        return urldecode(Url::toRoute(['view', 'slug' => $this->getFullSlug()]));
     }
 
     /**
