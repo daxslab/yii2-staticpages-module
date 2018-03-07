@@ -19,6 +19,10 @@ class Module extends \yii\base\Module
         'class' => MarkdownEditor::class,
     ];
 
+    public $languages = [
+        'en-US',
+    ];
+
     protected $_isBackend;
 
     /**

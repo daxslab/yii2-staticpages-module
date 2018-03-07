@@ -9,13 +9,22 @@ use yii\widgets\Pjax;
 /* @var $searchModel daxslab\staticpages\backend\models\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('staticpages', 'Pages');
-$this->params['breadcrumbs'][] = $this->title;
+$tag = 'h2';
+$title = Yii::t('app', 'Sub pages');
+
+if (!isset($parent_id)) {
+    $this->title = Yii::t('staticpages', 'Pages');
+    $this->params['breadcrumbs'][] = $this->title;
+
+    $tag = 'h1';
+    $title = $this->title;
+}
+
 ?>
 <div class="page-index">
 
     <header class="page-header">
-        <h1><?= Html::encode($this->title) ?></h1>
+        <?= Html::tag($tag, Html::encode($title)) ?>
     </header>
     <?php Pjax::begin(); ?>
 
@@ -23,8 +32,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'language',
+            [
+                'class' => 'yii\grid\SerialColumn',
+                'options' => [
+                    'width' => '40px',
+                ]
+            ],
+            [
+                'attribute' => 'language',
+                'visible' => !isset($parent_id),
+            ],
             [
                 'attribute' => 'title',
                 'format' => 'raw',
@@ -33,13 +50,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'slug',
-            //'image',
-            //'keywords',
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Html::a(Yii::t('staticpages', 'Create Page'),
-                    ['create', 'parent_id' => isset($parent_id) ? $parent_id : null], ['class' => 'btn btn-success']),
+                'header' => Html::a(Html::tag('i', null, ['class' => 'fa fa-plus']),
+                    ['create', 'parent_id' => isset($parent_id) ? $parent_id : null], [
+                        'class' => 'btn btn-success',
+                        'title' => Yii::t('staticpages', 'Create Page')
+                    ]),
                 'template' => '{delete}',
+                'options' => [
+                    'width' => '20px',
+                ],
+                'contentOptions' => [
+                    'style' => Html::cssStyleFromArray([
+                        'text-align' => 'center',
+                    ]),
+                ]
             ],
         ],
     ]); ?>

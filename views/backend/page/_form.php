@@ -5,11 +5,13 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model daxslab\staticpages\common\models\Page */
+/* @var $model daxslab\staticpages\models\Page */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $module Module */
 
-
-$editorConfig = $this->context->module->editorConfig;
+$module = $this->context->module;
+$editorConfig = $module->editorConfig;
+$availableLanguages = $module->languages;
 
 ?>
 
@@ -34,7 +36,9 @@ $editorConfig = $this->context->module->editorConfig;
 
         </div>
         <div class="col-md-4">
-            <?= $form->field($model, 'language')->textInput(['maxlength' => true]) ?>
+            <?php if($model->parent_id == null): ?>
+                <?= $form->field($model, 'language')->dropDownList($availableLanguages) ?>
+            <?php endif; ?>
 
             <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
 

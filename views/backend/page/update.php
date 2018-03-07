@@ -1,17 +1,17 @@
 <?php
 
-use daxslab\staticpages\Module;
 use yii\helpers\Html;
+use daxslab\staticpages\components\Utils;
 
 /* @var $this yii\web\View */
-/* @var $model daxslab\staticpages\common\models\Page */
+/* @var $model daxslab\staticpages\models\Page */
 
 $this->title = Yii::t('staticpages', 'Update Page: {nameAttribute}', [
     'nameAttribute' => $model->title,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('staticpages', 'Pages'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('staticpages', 'Update');
+
+$this->params['breadcrumbs'] = Utils::breadcrumbsForPage($model);
+
 ?>
 <div class="page-update">
 
