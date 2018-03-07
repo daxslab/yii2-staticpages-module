@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 $module = $this->context->module;
 $editorConfig = $module->editorConfig;
-$availableLanguages = $module->languages;
+$availableLanguages = array_combine($module->languages, $module->languages);
 
 ?>
 
