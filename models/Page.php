@@ -44,6 +44,7 @@ class Page extends \yii\db\ActiveRecord
             [['language', 'title', 'body'], 'required'],
             [['abstract', 'body'], 'string'],
             [['parent_id'], 'integer'],
+            [['image'], 'default'],
             [['language', 'title', 'image', 'keywords'], 'string', 'max' => 255],
             [
                 ['parent_id'],
