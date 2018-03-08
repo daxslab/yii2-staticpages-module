@@ -13,7 +13,7 @@ $tag = 'h2';
 $title = Yii::t('app', 'Sub pages');
 
 $module = $this->context->module;
-$availableLanguages = array_combine($module->languages, $module->languages);
+$availableLanguages = $module->languages;
 
 if (!isset($parent_id)) {
     $this->title = Yii::t('staticpages', 'Pages');
@@ -61,7 +61,8 @@ if (!isset($parent_id)) {
                 'header' => Html::a(Html::tag('i', null, ['class' => 'fa fa-plus']),
                     ['create', 'parent_id' => isset($parent_id) ? $parent_id : null], [
                         'class' => 'btn btn-success',
-                        'title' => Yii::t('staticpages', 'Create Page')
+                        'title' => Yii::t('staticpages', 'Create Page'),
+                        'data-pjax' => true,
                     ]),
                 'template' => '{delete}',
                 'options' => [

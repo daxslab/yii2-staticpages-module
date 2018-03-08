@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 
 $module = $this->context->module;
 $editorConfig = $module->editorConfig;
-$availableLanguages = array_combine($module->languages, $module->languages);
+$availableLanguages = $module->languages;
 
 ?>
 
@@ -28,7 +28,7 @@ $availableLanguages = array_combine($module->languages, $module->languages);
 
             <?= $form->field($model, 'abstract')->textarea(['rows' => 3]) ?>
 
-            <?php if(isset($editorConfig)): ?>
+            <?php if (isset($editorConfig)): ?>
                 <?= $form->field($model, 'body')->widget($editorConfig['class'], $editorConfig) ?>
             <?php else: ?>
                 <?= $form->field($model, 'body')->textarea(['rows' => 10]) ?>
@@ -36,7 +36,7 @@ $availableLanguages = array_combine($module->languages, $module->languages);
 
         </div>
         <div class="col-md-4">
-            <?php if($model->parent_id == null): ?>
+            <?php if ($model->parent_id == null): ?>
                 <?= $form->field($model, 'language')->dropDownList($availableLanguages) ?>
             <?php endif; ?>
 
@@ -44,7 +44,9 @@ $availableLanguages = array_combine($module->languages, $module->languages);
 
             <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 
-            <?= Yii::$app->runAction('staticpages/page/index', ['parent_id' => $model->id]) ?>
+            <?php if (!$model->isNewRecord): ?>
+                <?= Yii::$app->runAction('staticpages/page/index', ['parent_id' => $model->id]) ?>
+            <?php endif; ?>
 
         </div>
     </div>
