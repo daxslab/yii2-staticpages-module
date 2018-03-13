@@ -7,7 +7,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * PageSearch represents the model behind the search form of `daxslab\staticpages\common\models\Page`.
+ * PageSearch represents the model behind the search form of `daxslab\staticpages\models\Page`.
  */
 class PageSearch extends Page
 {
@@ -45,7 +45,7 @@ class PageSearch extends Page
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query->orderBy('language, title'),
         ]);
 
         $this->load($params);
