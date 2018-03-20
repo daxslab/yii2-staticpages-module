@@ -31,4 +31,9 @@ class PageQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    public function bySlug($slug)
+    {
+        return $this->where(['slug' => $slug])->one();
+    }
 }

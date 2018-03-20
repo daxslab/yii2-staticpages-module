@@ -29,7 +29,7 @@ $availableLanguages = $module->languages;
             <?= $form->field($model, 'abstract')->textarea(['rows' => 3]) ?>
 
             <?php if (isset($editorConfig)): ?>
-                <?= $form->field($model, 'body')->widget($editorConfig['class'], $editorConfig) ?>
+                <?= $form->field($model, 'body')->widget($editorConfig['class'], $editorConfig)->label(false) ?>
             <?php else: ?>
                 <?= $form->field($model, 'body')->textarea(['rows' => 10]) ?>
             <?php endif; ?>
