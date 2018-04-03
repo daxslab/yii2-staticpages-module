@@ -16,15 +16,15 @@ class Module extends \yii\base\Module
      */
     public $controllerNamespace = 'daxslab\staticspages\frontend\controllers';
 
-    public $editorConfig = [
-        'class' => MarkdownEditor::class,
-    ];
+    public $editorConfig = [];
 
     public $languages = [
         'en-US',
     ];
 
     public $formatter = null;
+
+    public $postsPerPage = 10;
 
     protected $_isBackend;
 

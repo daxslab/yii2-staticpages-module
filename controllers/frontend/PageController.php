@@ -2,6 +2,7 @@
 
 namespace daxslab\staticpages\controllers\frontend;
 
+use daxslab\staticpages\Module;
 use Yii;
 use daxslab\staticpages\models\Page;
 use daxslab\staticpages\models\PageSearch;
@@ -37,6 +38,8 @@ class PageController extends Controller
     {
         $searchModel = new PageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->orderBy('created_at DESC');
+        $dataProvider->pagination->pageSize = $this->module->postsPerPage;
 
         if (!$parent_id) {
             $dataProvider->query->andWhere('parent_id IS NULL');
@@ -65,11 +68,9 @@ class PageController extends Controller
 
         $model = $this->findModel($slugToSearch);
 
-        if ($model->fullSlug != $slug)
-        {
+        if ($model->fullSlug != $slug) {
             throw new NotFoundHttpException(Yii::t('staticpages', 'The requested page does not exist.'));
         }
-
 
         return $this->render('view', [
             'model' => $model,
